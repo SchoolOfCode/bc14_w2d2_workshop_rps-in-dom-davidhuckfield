@@ -6,7 +6,19 @@
     max-width: 600px;
     margin: 0 auto;
     text-align: center;
+    background-color:rgb(100,100,150);
+    color:rgb(255,255,255);
+    font-family:Tahoma;
   }
+
+  #scores {
+    background-color:rgb(150,100,50);
+    color:rgb(255,255,255);
+    font-family:monospace;
+    
+  }
+
+  #username-box{color:gray;}
   
   .game-choices {
     display: flex;

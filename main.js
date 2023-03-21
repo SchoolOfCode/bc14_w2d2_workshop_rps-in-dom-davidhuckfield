@@ -3,12 +3,22 @@ const rockBtn = document.querySelector('.rock');
 const paperBtn = document.querySelector('.paper');
 const scissorsBtn = document.querySelector('.scissors');
 const resultEl = document.querySelector('.result');
+const playerScoreBox = document.querySelector(`#player-score`);
+const computerScoreBox = document.querySelector(`#computer-score`);
+const numberOfGamesBox = document.querySelector(`#number-of-games`);
+const drawsBox = document.querySelector(`#draws`);
 
 // Add click event listeners to the game choices buttons
 rockBtn.addEventListener('click', () => playGame('rock'));
 paperBtn.addEventListener('click', () => playGame('paper'));
 scissorsBtn.addEventListener('click', () => playGame('scissors'));
 
+
+let username;
+let playerScore=0;
+let computerScore=0;
+let numberofGames=0;
+let draws=0;
 // Function to play the game
 function playGame(userChoice) {
   // Generate a random computer choice
@@ -20,17 +30,28 @@ function playGame(userChoice) {
   if (userChoice === 'rock' && computerChoice === 'scissors' ||
       userChoice === 'paper' && computerChoice === 'rock' ||
       userChoice === 'scissors' && computerChoice === 'paper') {
-    result = 'You Win!';
+    result = `You Win!`;
+    playerScore++;
   } else if (userChoice === computerChoice) {
     result = 'Tie!';
+    draws++;
   } else {
     result = 'Computer Wins!';
+    computerScore++;
   }
-
+  numberofGames++;
   // Show the result
-  resultEl.textContent = `You chose ${userChoice}, the computer chose ${computerChoice}. ${result}`;
+ if (typeof(username)==="undefined")
+ {resultEl.textContent = `You chose ${userChoice}, the computer chose ${computerChoice}. ${result}`;}
+ else
+  {resultEl.textContent = `${username} chose ${userChoice}, the computer chose ${computerChoice}. ${result}`;}
   resultEl.parentElement.style.display = 'block';
+  playerScoreBox.textContent=`Player Score: ${playerScore}`;
+  computerScoreBox.textContent=`Computer Score: ${computerScore}`;
+  numberOfGamesBox.textContent=`Number of Games: ${numberofGames}`;
+  drawsBox.textContent=`Draws: ${draws}`;
 }
+
 
 
 // ## Add validation
@@ -48,14 +69,16 @@ function playGame(userChoice) {
 let usernameInput = document.querySelector(`#username-input`);
 let usernameBox = document.querySelector(`#username-box`);
 let usernameButton = document.querySelector(`#username-button`);
-let username;
+
 
 usernameButton.addEventListener("click", enterUsername);
 
 function enterUsername(event){
   if (usernameInput.value.length < 11) {
   username=usernameInput.value;
-  usernameBox.textContent=usernameInput.value;}
+  usernameBox.textContent=username;
+    usernameBox.style.color="white";
+}
   else {alert("Please enter a username of 10 characters or less");}
 }
 
