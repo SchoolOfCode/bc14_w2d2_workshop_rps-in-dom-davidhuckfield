@@ -31,9 +31,3 @@ function playGame(userChoice) {
   resultEl.textContent = `You chose ${userChoice}, the computer chose ${computerChoice}. ${result}`;
   resultEl.parentElement.style.display = 'block';
 }
-
-// Add click event listener to the play again button
-const playAgainBtn = document.querySelector('.play-again');
-playAgainBtn.addEventListener('click', () => {
-  resultEl.parentElement.style.display = 'none';
-});
